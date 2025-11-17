@@ -29,6 +29,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation("io.ktor:ktor-client-okhttp:3.3.2")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -39,9 +40,16 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation("de.kempmobil.ktor.mqtt:mqtt-client:0.8.0")
+            implementation("de.kempmobil.ktor.mqtt:mqtt-core:0.8.0")
+            implementation("de.kempmobil.ktor.mqtt:mqtt-client-ws:0.8.0")
+            implementation("io.ktor:ktor-client-core:3.3.2")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        iosMain.dependencies {
+            implementation("io.ktor:ktor-client-darwin:3.3.2")
         }
     }
 }

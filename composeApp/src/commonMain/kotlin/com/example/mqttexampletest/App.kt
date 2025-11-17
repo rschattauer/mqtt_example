@@ -24,6 +24,12 @@ import mqttexampletest.composeapp.generated.resources.compose_multiplatform
 fun App() {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
+        // Create and remember the ViewModel instance for collecting MQTT topic flows
+        val mqttViewModel = remember { MqttViewModel() }
+        // Collect the three topic StateFlows as Compose state
+        val topicOne by mqttViewModel.topicOne.collectAsState()
+        val topicTwo by mqttViewModel.topicTwo.collectAsState()
+        val topicThree by mqttViewModel.topicThree.collectAsState()
         Column(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.primaryContainer)
@@ -42,6 +48,10 @@ fun App() {
                 ) {
                     Image(painterResource(Res.drawable.compose_multiplatform), null)
                     Text("Compose: $greeting")
+                    // Show the received MQTT messages from the three StateFlows
+                    Text("Topic One: ${topicOne}")
+                    Text("Topic Two: ${topicTwo}")
+                    Text("Topic Three: ${topicThree}")
                 }
             }
         }
